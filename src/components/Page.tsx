@@ -1,26 +1,21 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Feed from "./Feed";
-import { getLatest } from "../services/fetchFeed";
-import { useQuery } from "react-query";
-import { Channel } from "../interfaces";
+import FeedBox from "./FeedBox";
 
 
 const Page = () => {
-  const {
-    isFetching,
-    data,
-    isError,
-    error
-  }: { isFetching: boolean, data: (Record<'channel', Channel> | null | undefined), isError: boolean, error: (object | null | undefined) } =
-    useQuery(["latestTelex"], () => getLatest('rss'));
-
-// useEffect(() => {
-//     console.log('data', data)
-//   }, [data]);
+  const sources = [{ name: 'Telex friss', ref: 'latestTelex', path: 'rss' }]
 
   return (
     <>
-      {!!data && <Feed feed={data.channel}/>}
+      {sources.map((source, index) => {
+        return (
+          <FeedBox source={source}>
+            <Feed key={index} source={source}/>
+          </FeedBox>
+        )
+      })
+      }
     </>
   )
 }

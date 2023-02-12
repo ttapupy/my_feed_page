@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import { QueryClient, QueryClientProvider } from "react-query";
 import Page from "./components/Page";
+import ErrorSection from "./components/ErrorSection";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
 
@@ -12,7 +14,6 @@ function App() {
       },
     },
   });
-
 
   return (
     <div className="App">

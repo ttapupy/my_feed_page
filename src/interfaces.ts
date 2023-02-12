@@ -13,3 +13,9 @@ export interface Channel {
   description?: string;
   item: Item[];
 }
+
+export interface Source {
+  name: string;
+  path: string;
+  ref: string;
+}
